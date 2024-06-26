@@ -1,3 +1,4 @@
+import {Button, TableRow, TableCell} from "@mui/material";
 import React from "react";
 
 const CrudTableRow = ({el, setDataToEdit, deleteData}) => {
@@ -5,15 +6,15 @@ const CrudTableRow = ({el, setDataToEdit, deleteData}) => {
   let {id} = el;
 
   return (
-    <tr>
-      <td>{el.id}</td>
-      <td>{el.marca}</td>
-      <td>{el.modelo}</td>
-      <td>
-        <button onClick={()=> setDataToEdit(el)}>Editar</button>
-        <button onClick={()=> deleteData(id)}>Eliminar</button>
-      </td>
-    </tr>
+    <TableRow>
+      <TableCell>{el.id}</TableCell>
+      <TableCell>{el.marca}</TableCell>
+      <TableCell>{el.modelo}</TableCell>
+      <TableCell>
+      <Button variant="contained" className="ButtonClear" onClick={()=> setDataToEdit(el)}>Editar</Button>
+      <Button variant="contained" className="ButtonReset" onClick={()=> deleteData(id)}>Eliminar</Button>
+      </TableCell>
+    </TableRow>
   );
 };
 

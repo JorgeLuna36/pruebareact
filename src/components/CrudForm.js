@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import {Button, TextField} from "@mui/material";
+
 
 const initialForm = {
   id: null,
@@ -56,23 +58,11 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit, initDb })
     <div>
       <Titulo/>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="marca"
-          placeholder="marca"
-          onChange={handleChange}
-          value={form.marca}
-        />
-        <input
-          type="text"
-          name="modelo"
-          placeholder="modelo"
-          onChange={handleChange}
-          value={form.modelo}
-        />
-        <input type="submit" value={"Añadir"} />
-        <input type="reset" value={"Limpiar/Volver"} onClick={handleReset} />
-        <input type="reset" value={"Reiniciar"} onClick={handleInit} />
+        <TextField id="standard-basic" label="Marca" variant="standard" className="TextFieldForm" name="marca" onChange={handleChange} value={form.marca}/>
+        <TextField id="standard-basic" label="Marca" variant="standard" className="TextFieldForm" name="modelo" onChange={handleChange} value={form.modelo}/>
+        <Button variant="contained" className="ButtonAdd" type="submit">Añadir</Button>
+        <Button variant="contained" className="ButtonClear" type="reset" onClick={handleReset}>Limpiar / Volver</Button>
+        <Button variant="contained" className="ButtonReset" type="reset" onClick={handleInit}>Reiniciar</Button>
       </form>
     </div>
   );

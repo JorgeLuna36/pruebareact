@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
+import { Container } from "@mui/material";
+import '../App.css';
 
 const initialDb = [
   { id: 1, marca: "Samsung", modelo: "S21" },
@@ -38,8 +40,7 @@ const CrudApp = () => {
     setDb(initialDb);
   }
   return (
-    <div>
-      <h1>Crud</h1>
+    <Container className="ContentCenter">
       <CrudForm
         createData={createData}
         updateData={updateData}
@@ -52,7 +53,7 @@ const CrudApp = () => {
         setDataToEdit={setDataToEdit}
         deleteData={deleteData}
       />
-    </div>
+    </Container>
   );
 };
 

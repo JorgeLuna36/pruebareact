@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+.ButtonAdd {
+  background-color: #30bc14;
+  margin: 20px;
+}
+
+.ButtonAdd:hover {
+  background-color: #299613;
+  margin: 20px;
+}
+
+.ButtonClear {
+  background-color: #144cc7;
+  margin: 20px;
+}
+.ButtonClear:hover {
+  background-color: #103a94;
+  margin: 20px;
+}
+
+.ButtonReset {
+  background-color: #b92424;
+  margin: 20px;
+}
+
+.ButtonReset:hover {
+  background-color: #7d1919;
+  margin: 20px;
+}
+
+.TextFieldForm {
+  margin: 20px;
+}
+
+.ContentCenter {
+  align-items: center;
+}
