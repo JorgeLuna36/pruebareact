@@ -11,19 +11,46 @@ const initialDb = [
 
 const CrudApp = () => {
   const [db, setDb] = useState(initialDb);
+  const [dataToEdit, setDataToEdit] = useState(null);
+
+  const createData = (data) => {
+    //data.id = Date.now();
+    data.id = db.length + 1;
+    setDb([...db, data]);
+  };
+
+  const updateData = (data) => {
+    let newData = db.map((el) => (el.id === data.id ? data : el));
+    setDb(newData);
+  };
+
+  const deleteData = (id) => {
+    let isDelete = window.confirm("Eliminar?");
+    if (isDelete) {
+      let newData = db.filter((el) => el.id !== id);
+      setDb(newData);
+    } else {
+      return;
+    }
+  };
+
+  const initDb = ()=>{
+    setDb(initialDb);
+  }
   return (
     <div>
       <h1>Crud</h1>
       <CrudForm
-        //createData={createData}
-        //updateData={updateDate}
-        //dataToEdit={dataToEdit}
-        //setDataToEdit={setDatatoEdit}
+        createData={createData}
+        updateData={updateData}
+        dataToEdit={dataToEdit}
+        setDataToEdit={setDataToEdit}
+        initDb={initDb}
       />
       <CrudTable
         data={db}
-        //setDataToEdit={setDatatoEdit}
-        //deleteData={deleteData}
+        setDataToEdit={setDataToEdit}
+        deleteData={deleteData}
       />
     </div>
   );
