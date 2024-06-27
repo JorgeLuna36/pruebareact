@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
 import { Container } from "@mui/material";
-import '../App.css';
 
 const initialDb = [
   { id: 1, marca: "Samsung", modelo: "S21" },
@@ -12,11 +11,22 @@ const initialDb = [
 ];
 
 const CrudApp = () => {
-  const [db, setDb] = useState(initialDb);
+  const getDb = () => {
+    const saveDb = window.localStorage.getItem("db");
+    if (saveDb) {
+      return JSON.parse(saveDb);
+    } else {
+      return [];
+    }
+  };
+  const [db, setDb] = useState(getDb);
   const [dataToEdit, setDataToEdit] = useState(null);
 
+  useEffect(()=>{
+    window.localStorage.setItem("db", JSON.stringify(db));
+  },[db])
+
   const createData = (data) => {
-    //data.id = Date.now();
     data.id = db.length + 1;
     setDb([...db, data]);
   };
@@ -36,9 +46,10 @@ const CrudApp = () => {
     }
   };
 
-  const initDb = ()=>{
+  const initDb = () => {
     setDb(initialDb);
-  }
+  };
+
   return (
     <Container className="ContentCenter">
       <CrudForm
