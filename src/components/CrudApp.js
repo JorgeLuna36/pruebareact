@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
-import { Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
+import { useAuth } from "../auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const initialDb = [
   { id: 1, marca: "Samsung", modelo: "S21" },
@@ -21,10 +23,12 @@ const CrudApp = () => {
   };
   const [db, setDb] = useState(getDb);
   const [dataToEdit, setDataToEdit] = useState(null);
+  const auth = useAuth();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     window.localStorage.setItem("db", JSON.stringify(db));
-  },[db])
+  }, [db]);
 
   const createData = (data) => {
     data.id = db.length + 1;
@@ -50,6 +54,10 @@ const CrudApp = () => {
     setDb(initialDb);
   };
 
+  const logout1 = () => {
+    navigate(auth.logout());
+  };
+
   return (
     <Container className="ContentCenter">
       <CrudForm
@@ -64,6 +72,14 @@ const CrudApp = () => {
         setDataToEdit={setDataToEdit}
         deleteData={deleteData}
       />
+      <Button
+        variant="contained"
+        className="ButtonClear"
+        type="reset"
+        onClick={logout1}
+      >
+        Cerrar Sesion
+      </Button>
     </Container>
   );
 };

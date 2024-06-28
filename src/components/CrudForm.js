@@ -41,10 +41,6 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit, initDb })
     setDataToEdit(null);
   };
 
-  const handleInit = (e)=>{
-    initDb();
-  }
-
   const Titulo = () => {
     if(dataToEdit){
       return <h3>Editar</h3>;
@@ -61,7 +57,6 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit, initDb })
         <TextField id="standard-basic" label="Marca" variant="standard" className="TextFieldForm" name="modelo" onChange={handleChange} value={form.modelo}/>
         <Button variant="contained" className="ButtonAdd" type="submit">{dataToEdit ? "Editar":"Añadir"}</Button>
         <Button variant="contained" className="ButtonClear" type="reset" onClick={handleReset}>Limpiar / Volver</Button>
-        <Button variant="contained" className="ButtonReset" type="reset" onClick={handleInit}>Reiniciar</Button>
       </form>
     </div>
   );
